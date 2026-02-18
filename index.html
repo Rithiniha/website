@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rithiniha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --muted: #888;
+        --accent: #1a1a1a;
+        --divider: #e8e8e8;
+        --font-body: "Inter", sans-serif;
+      }
+
+      html {
+        font-size: clamp(17px, 4.5vw, 18px);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-weight: 500;
+        line-height: 1.75;
+        padding: clamp(32px, 8vw, 60px) clamp(20px, 6vw, 40px)
+          clamp(60px, 12vw, 100px);
+      }
+
+      .container {
+        max-width: 660px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      @media (max-width: 600px) {
+        html {
+          font-size: 19px;
+        }
+        body {
+          padding: 36px 22px 80px;
+        }
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 28px;
+        }
+        h2 {
+          font-size: 1.15rem;
+          margin-bottom: 14px;
+        }
+        .about-bio {
+          font-size: 1.05rem;
+        }
+        .timeline-item {
+          grid-template-columns: 50px 14px 1fr;
+          gap: 0 6px;
+        }
+        .timeline-year {
+          font-size: 1rem;
+        }
+        .timeline-text {
+          font-size: 1rem;
+          line-height: 1.65;
+        }
+        .skill-tag {
+          font-size: 0.95rem;
+          padding: 6px 12px;
+        }
+        .award-item {
+          font-size: 1rem;
+        }
+        .contact-links a {
+          font-size: 1.1rem;
+          padding: 5px 0;
+          display: block;
+        }
+        section {
+          margin-bottom: 38px;
+        }
+        hr {
+          margin: 28px 0;
+        }
+      }
+
+      h1 {
+        font-family: var(--font-body);
+        font-weight: 800;
+        font-size: clamp(1.8rem, 8vw, 2rem);
+        letter-spacing: -0.03em;
+        margin-bottom: 6px;
+        color: var(--text);
+      }
+
+      .tagline {
+        font-size: 0.9rem;
+        color: var(--muted);
+        font-weight: 500;
+        margin-bottom: 14px;
+        letter-spacing: 0.01em;
+      }
+
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+
+      .header-icons a {
+        color: var(--muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: color 0.15s;
+      }
+
+      .header-icons a:hover {
+        color: var(--text);
+      }
+
+      .header-icons svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      section {
+        margin-bottom: 48px;
+      }
+
+      h2 {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.01em;
+        margin-bottom: 18px;
+        color: var(--text);
+      }
+
+      .about-bio {
+        color: var(--muted);
+        font-size: 1.05rem;
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 52px 20px 1fr;
+        gap: 0 8px;
+        align-items: start;
+      }
+
+      .timeline-year {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--muted);
+        padding-top: 2px;
+        letter-spacing: 0.02em;
+      }
+
+      .timeline-dash {
+        color: var(--muted);
+        padding-top: 2px;
+        font-weight: 600;
+      }
+
+      .timeline-text {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      .timeline a {
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .timeline a:hover {
+        text-decoration: underline;
+        color: blue;
+      }
+
+      /* Experience blocks */
+      .exp-block {
+        margin-bottom: 28px;
+      }
+
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 2px;
+      }
+
+      .exp-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .exp-date {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .exp-company {
+        font-size: 0.9rem;
+        color: var(--muted);
+        font-style: italic;
+        margin-bottom: 8px;
+      }
+
+      .exp-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .exp-bullets li {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text);
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        line-height: 1.6;
+      }
+
+      .exp-bullets li::before {
+        content: "·";
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+
+      /* Skills */
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag {
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 5px 13px;
+        border: 1px solid var(--divider);
+        border-radius: 2px;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+
+      /* Awards */
+      .awards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .award-item {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text);
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .award-item::before {
+        content: "·";
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+
+      /* Press / certs */
+      .press-outlets {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--muted);
+        margin-bottom: 18px;
+      }
+
+      .press-outlets span {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .press-outlets a {
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: underline;
+      }
+
+      .press-outlets a:hover {
+        text-decoration: underline;
+        color: blue;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--divider);
+        margin: 40px 0;
+      }
+
+      /* LAST.FM TRACKS */
+      .track-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .track-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      .track-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .track-name {
+        font-weight: 500;
+      }
+      .track-artist {
+        font-size: 0.85em;
+        opacity: 0.7;
+      }
+
+      h2.is-playing {
+        color: #1db954;
+      }
+
+      .music-bars {
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 14px;
+        margin-left: 7px;
+        vertical-align: middle;
+      }
+
+      .music-bars span {
+        display: block;
+        width: 3px;
+        background: #1db954;
+        border-radius: 1px;
+        animation: bar 0.8s ease-in-out infinite;
+      }
+
+      .music-bars span:nth-child(1) {
+        height: 6px;
+        animation-delay: 0s;
+      }
+      .music-bars span:nth-child(2) {
+        height: 10px;
+        animation-delay: 0.15s;
+      }
+      .music-bars span:nth-child(3) {
+        height: 14px;
+        animation-delay: 0.3s;
+      }
+      .music-bars span:nth-child(4) {
+        height: 8px;
+        animation-delay: 0.45s;
+      }
+
+      @keyframes bar {
+        0%,
+        100% {
+          transform: scaleY(0.4);
+        }
+        50% {
+          transform: scaleY(1);
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .container > * {
+        animation: fadeUp 0.5s ease both;
+      }
+      h1 {
+        animation-delay: 0.05s;
+      }
+      .tagline {
+        animation-delay: 0.08s;
+      }
+      section:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      section:nth-child(4) {
+        animation-delay: 0.16s;
+      }
+      section:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+      section:nth-child(6) {
+        animation-delay: 0.24s;
+      }
+      section:nth-child(7) {
+        animation-delay: 0.28s;
+      }
+      section:nth-child(8) {
+        animation-delay: 0.32s;
+      }
+      section:nth-child(9) {
+        animation-delay: 0.36s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Rithiniha</h1>
+      <p class="tagline">Tirupur</p>
+
+      <div class="header-icons">
+        <!-- LinkedIn -->
+        <a
+          href="https://linkedin.com/in/rithiniha-kamalanathan"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            />
+          </svg>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/Rithiniha" target="_blank" title="GitHub">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+            />
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:rithukamal@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.96L12 10.09l9.404-6.269h.96A1.636 1.636 0 0 1 24 5.457z"
+            />
+          </svg>
+        </a>
+        <!-- Twitter / X -->
+        <a href="https://x.com/rithiniha" target="_blank" title="Twitter / X">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.263 5.633L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- About -->
+      <section>
+        <h2>About me</h2>
+        <p class="about-bio">
+          Motivated and adaptable developer eager to learn new technologies and
+          contribute to impactful projects, with strong attention to detail and
+          a growth mindset driven by hands-on collaboration and practical
+          problem-solving.
+        </p>
+      </section>
+
+      <hr />
+
+      <!-- Experience -->
+      <section>
+        <h2>Experience</h2>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Full Stack Developer Intern</span>
+            <span class="exp-date">Jul 2025 – Sep 2025</span>
+          </div>
+          <div class="exp-company">
+            Fabrainz India Private Limited, Coimbatore
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              Assisted senior developers in building and refining React-based
+              web interfaces
+            </li>
+            <li>
+              Gained hands-on backend experience by implementing APIs and server
+              logic using Node.js
+            </li>
+            <li>
+              Utilized Git for version control, branch management and
+              collaborative code reviews
+            </li>
+            <li>
+              Contributed to full-stack feature development and issue resolution
+              within an agile team environment
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Technical Content Developer</span>
+            <span class="exp-date">2024</span>
+          </div>
+          <div class="exp-company">MGC at KGISL, Coimbatore</div>
+          <ul class="exp-bullets">
+            <li>
+              Worked with developers to create technical and coding content
+              across major programming languages
+            </li>
+            <li>
+              Contributed to the Million Genius Coders project by writing
+              structured scripts and supporting content flow
+            </li>
+            <li>
+              Managed project databases, ensuring accurate data structuring and
+              updates
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Projects -->
+      <section>
+        <h2>Projects</h2>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">LawGo: AI Powered Legal Assistant</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              Built a React + Node.js legal assistant integrating NLP and RAG
+              for context-aware responses
+            </li>
+            <li>
+              Developed scalable UI components, authentication flows and state
+              management
+            </li>
+            <li>
+              Implemented backend services for vector retrieval, document
+              parsing and secure API operations
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Personal Finance Tracker</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              Built a Spring Boot backend for a personal finance tracker with
+              MongoDB storage
+            </li>
+            <li>
+              Implemented APIs for expenses, categories, summaries and budget
+              analytics
+            </li>
+            <li>
+              Designed layered architecture with services, DTOs and optimised
+              MongoDB queries
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Education -->
+      <section>
+        <h2>Education</h2>
+        <div class="exp-block">
+          <div class="exp-header">
+            <span class="exp-title">Master of Science in Software Systems</span>
+            <span class="exp-date">2022 – 2027</span>
+          </div>
+          <div class="exp-company">KGISL, Coimbatore</div>
+          <ul class="exp-bullets">
+            <li>
+              GPA: 8.1 · Relevant Courses: Data Structures, Web Dev, RDBMS,
+              Software Engineering, Java, Python
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Now Playing -->
+      <section>
+        <h2 id="lastfm-title">Now playing</h2>
+        <div id="lastfm-tracks" class="timeline">
+          <span class="timeline-text">loading...</span>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Skills -->
+      <section>
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Html / CSS</span>
+          <span class="skill-tag">Javascript</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">Spring boot</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">MongoDb</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Github</span>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Awards -->
+      <section>
+        <h2>Awards &amp; Participations</h2>
+        <div class="awards-list">
+          <div class="award-item">
+            AWS DeepRacer 3.0 League 2024 — finalist among top 50 teams across
+            campus
+          </div>
+          <div class="award-item">
+            3rd place, internal hackathon at KGISL — advanced to SIH 2024
+          </div>
+          <div class="award-item">
+            Participated in Code-Fusion conducted by KGM (2025)
+          </div>
+        </div>
+      </section>
+
+      <hr />
+
+      <!-- Certifications -->
+      <section>
+        <h2>Certifications</h2>
+        <p class="press-outlets">
+          Certified in <span>Gen AI</span> · Google Developers Group (GDG)<br />
+          Certified in <span>MongoDB</span> · ICT Academy Learnathon 2023<br />
+          Certified in <span>Node.js</span> · Maiyyam Academy<br />
+          Completed various courses on
+          <span>Python, JavaScript, AI &amp; Java</span> · Coursera
+        </p>
+      </section>
+    </div>
+
+    <script>
+      const LASTFM_USER = "Eeesh15";
+      const LASTFM_API_KEY = "6bf2df81f9faa178d021ee3a8dee4235";
+
+      async function fetchRecentTracks() {
+        const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=1`;
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          if (data.error) {
+            document.getElementById("lastfm-tracks").innerHTML =
+              `<span class="timeline-text">couldn't load tracks (${data.message})</span>`;
+            return;
+          }
+          const tracks = data.recenttracks.track;
+          const track = Array.isArray(tracks) ? tracks[0] : tracks;
+          const container = document.getElementById("lastfm-tracks");
+          container.innerHTML = "";
+
+          const isNowPlaying = track["@attr"]?.nowplaying === "true";
+          const titleEl = document.getElementById("lastfm-title");
+          titleEl.textContent = isNowPlaying ? "Now playing" : "Last played";
+          if (isNowPlaying) {
+            titleEl.classList.add("is-playing");
+            titleEl.insertAdjacentHTML(
+              "beforeend",
+              `<span class="music-bars"><span></span><span></span><span></span><span></span></span>`,
+            );
+          } else {
+            titleEl.classList.remove("is-playing");
+          }
+
+          const albumArt = track.image?.[1]?.["#text"] || "";
+          const trackName = track.name;
+          const artistName =
+            track.artist?.["#text"] || track.artist?.name || "";
+
+          const div = document.createElement("div");
+          div.className = "track-item";
+          div.innerHTML = `
+            ${albumArt ? `<img src="${albumArt}" alt="${trackName} cover" />` : ""}
+            <div class="track-info">
+              <span class="track-name">${trackName}</span>
+              <span class="track-artist">${artistName}</span>
+            </div>
+          `;
+          container.appendChild(div);
+        } catch (err) {
+          document.getElementById("lastfm-tracks").innerHTML =
+            `<span class="timeline-text">failed to load tracks.</span>`;
+        }
+      }
+
+      fetchRecentTracks();
+      setInterval(fetchRecentTracks, 30000);
+    </script>
+  </body>
+</html>
