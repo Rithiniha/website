@@ -590,6 +590,26 @@
 
         <div class="exp-block">
           <div class="exp-header">
+            <span class="exp-title">Nuance: Mental ChatBot Application</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              Built an AI chatbot using React and Node.js for real-time
+              empathetic user interactions
+            </li>
+            <li>
+              Visualized conversation analytics and user sentiment trends using
+              structured logging and dashboard components
+            </li>
+            <li>
+              Implemented tone tuning and prompt optimization to adapt responses
+              based on emotional context
+            </li>
+          </ul>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-header">
             <span class="exp-title">Personal Finance Tracker</span>
           </div>
           <ul class="exp-bullets">
@@ -631,16 +651,6 @@
 
       <hr />
 
-      <!-- Now Playing -->
-      <section>
-        <h2 id="lastfm-title">Now playing</h2>
-        <div id="lastfm-tracks" class="timeline">
-          <span class="timeline-text">loading...</span>
-        </div>
-      </section>
-
-      <hr />
-
       <!-- Skills -->
       <section>
         <h2>Skills</h2>
@@ -657,6 +667,11 @@
           <span class="skill-tag">MongoDb</span>
           <span class="skill-tag">Git</span>
           <span class="skill-tag">Github</span>
+          <span class="skill-tag">Data Structures</span>
+          <span class="skill-tag">RAG</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">API Development</span>
+          <span class="skill-tag">Prompt Engineering</span>
         </div>
       </section>
 
@@ -676,6 +691,20 @@
           <div class="award-item">
             Participated in Code-Fusion conducted by KGM (2025)
           </div>
+          <div class="award-item">
+            Secured 1st Prize at a National-Level Hackathon held at Nehru
+            College of Arts & Science (2026)
+          </div>
+
+          <div class="award-item">
+            Earned one year of complimentary incubation center access through
+            the hackathon program
+          </div>
+
+          <div class="award-item">
+            Secured 1st place in the Google Developers Community internal
+            hackathon at KGCAS (2026)
+          </div>
         </div>
       </section>
 
@@ -693,62 +722,5 @@
         </p>
       </section>
     </div>
-
-    <script>
-      const LASTFM_USER = "Eeesh15";
-      const LASTFM_API_KEY = "6bf2df81f9faa178d021ee3a8dee4235";
-
-      async function fetchRecentTracks() {
-        const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_API_KEY}&format=json&limit=1`;
-        try {
-          const res = await fetch(url);
-          const data = await res.json();
-          if (data.error) {
-            document.getElementById("lastfm-tracks").innerHTML =
-              `<span class="timeline-text">couldn't load tracks (${data.message})</span>`;
-            return;
-          }
-          const tracks = data.recenttracks.track;
-          const track = Array.isArray(tracks) ? tracks[0] : tracks;
-          const container = document.getElementById("lastfm-tracks");
-          container.innerHTML = "";
-
-          const isNowPlaying = track["@attr"]?.nowplaying === "true";
-          const titleEl = document.getElementById("lastfm-title");
-          titleEl.textContent = isNowPlaying ? "Now playing" : "Last played";
-          if (isNowPlaying) {
-            titleEl.classList.add("is-playing");
-            titleEl.insertAdjacentHTML(
-              "beforeend",
-              `<span class="music-bars"><span></span><span></span><span></span><span></span></span>`,
-            );
-          } else {
-            titleEl.classList.remove("is-playing");
-          }
-
-          const albumArt = track.image?.[1]?.["#text"] || "";
-          const trackName = track.name;
-          const artistName =
-            track.artist?.["#text"] || track.artist?.name || "";
-
-          const div = document.createElement("div");
-          div.className = "track-item";
-          div.innerHTML = `
-            ${albumArt ? `<img src="${albumArt}" alt="${trackName} cover" />` : ""}
-            <div class="track-info">
-              <span class="track-name">${trackName}</span>
-              <span class="track-artist">${artistName}</span>
-            </div>
-          `;
-          container.appendChild(div);
-        } catch (err) {
-          document.getElementById("lastfm-tracks").innerHTML =
-            `<span class="timeline-text">failed to load tracks.</span>`;
-        }
-      }
-
-      fetchRecentTracks();
-      setInterval(fetchRecentTracks, 30000);
-    </script>
   </body>
 </html>
